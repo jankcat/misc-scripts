@@ -20,7 +20,7 @@ document.body.appendChild(elem);
 (function(){
   var e = document.getElementById('nedry');
   var text = document.createElement('span');
-  text.innerHtml = "YOU DIDN'T SAY THE MAGIC WORD!";
-  e.appendChild(audio);
-  setTimeout(arguments.callee, 1000);
+  text.innerHTML = "<br/>YOU DIDN'T SAY THE MAGIC WORD!";
+  e.appendChild(text);
+  setTimeout(arguments.callee, 375);
 })();
