@@ -8,7 +8,7 @@ var img = document.createElement('img');
 img.src='https://raw.githubusercontent.com/jankcat/misc-scripts/master/nedry/nedry.gif';
 elem.appendChild(img);
 
-// img
+// audio
 var audio = document.createElement('audio');
 audio.src='https://raw.githubusercontent.com/jankcat/misc-scripts/master/nedry/nedry.mp3';
 audio.autoplay='true';
